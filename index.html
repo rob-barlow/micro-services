@@ -6,13 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TO DO</title>
     <link rel="stylesheet" href="/src/style.css" />
+    <script src="https://unpkg.com/htmx.org@2.0.2"></script>
   </head>
   <body>
     <h1>TO DO LIST</h1>
-    <h2>New deployment</h2>
+    <div class="deployment-info-container">
+      <h2>New deployments</h2>
+    </div>
     <p class="description">
       This frontend is returned from my to-do-list worker
     </p>
+    <button hx-get="/api/health" hx-target="#to-do-list">
+      Click Me
+    </button>
+    
+    <button hx-post="/api/task" hx-target="#to-do-list">
+      Create a new task
+    </button>
+
+    <div id="to-do-list"></div>
+    <!-- <form>
+
+    </form> -->
     <script type="module" src="/src/index.ts"></script>
   </body>
 </html>

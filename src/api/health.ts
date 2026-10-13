@@ -4,13 +4,11 @@ const Health = {
     Unhealthy: "Unhealthy"
 }
 
-handleHealthRequest
-
-async function handleHealthRequest(_request: Request, _env: Env): Promise<Response> {
+async function getHealthHandler(_request: Request, _env: Env): Promise<Response> {
     const init: ResponseInit = {status: 200};
     
     const response = new Response(Health.Healthy, init);
     return response;
 }
 
-export default handleHealthRequest;
+export default getHealthHandler;

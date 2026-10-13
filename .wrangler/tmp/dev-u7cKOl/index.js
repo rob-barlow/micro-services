@@ -7,13 +7,25 @@ var Health = {
   Degraded: "Degraded",
   Unhealthy: "Unhealthy"
 };
-async function handleHealthRequest(_request, _env) {
+async function getHealthHandler(_request, _env) {
   const init = { status: 200 };
   const response = new Response(Health.Healthy, init);
   return response;
 }
-__name(handleHealthRequest, "handleHealthRequest");
-var health_default = handleHealthRequest;
+__name(getHealthHandler, "getHealthHandler");
+var health_default = getHealthHandler;
+
+// src/api/task.ts
+async function postTaskHandler(_request, _env) {
+  currentTasks.push(hardcodedHtml);
+  const init = { status: 200 };
+  const response = new Response(currentTasks.join(""), init);
+  return response;
+}
+__name(postTaskHandler, "postTaskHandler");
+var task_default = postTaskHandler;
+var hardcodedHtml = '<p class="task">I am a hardcoded task</p>';
+var currentTasks = [];
 
 // src/api/api.ts
 async function handleApiRequest(request, _env) {
@@ -26,7 +38,8 @@ async function handleApiRequest(request, _env) {
 __name(handleApiRequest, "handleApiRequest");
 var api_default = handleApiRequest;
 var routes = {
-  "/api/health": health_default
+  "/api/health": health_default,
+  "/api/task": task_default
 };
 
 // src/index.ts
@@ -86,7 +99,7 @@ var jsonError = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx)
 }, "jsonError");
 var middleware_miniflare3_json_error_default = jsonError;
 
-// .wrangler/tmp/bundle-Dk5yVb/middleware-insertion-facade.js
+// .wrangler/tmp/bundle-pSvdZy/middleware-insertion-facade.js
 var __INTERNAL_WRANGLER_MIDDLEWARE__ = [
   middleware_ensure_req_body_drained_default,
   middleware_miniflare3_json_error_default
@@ -118,7 +131,7 @@ function __facade_invoke__(request, env, ctx, dispatch, finalMiddleware) {
 }
 __name(__facade_invoke__, "__facade_invoke__");
 
-// .wrangler/tmp/bundle-Dk5yVb/middleware-loader.entry.ts
+// .wrangler/tmp/bundle-pSvdZy/middleware-loader.entry.ts
 var __Facade_ScheduledController__ = class ___Facade_ScheduledController__ {
   constructor(scheduledTime, cron, noRetry) {
     this.scheduledTime = scheduledTime;

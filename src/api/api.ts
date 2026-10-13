@@ -1,4 +1,5 @@
-import handleHealthRequest from "./health";
+import getHealthHandler from "./health";
+import postTaskHandler from "./task";
 
 async function handleApiRequest(request: Request, _env: Env): Promise<Response> {
     const handler = routes[new URL(request.url).pathname];
@@ -13,7 +14,8 @@ async function handleApiRequest(request: Request, _env: Env): Promise<Response> 
 export default handleApiRequest;
 
 const routes: Record<string, RouteHandler> = {
-    "/api/health": handleHealthRequest
+    "/api/health": getHealthHandler,
+    "/api/task": postTaskHandler,
 };
 
 type RouteHandler = (request: Request<unknown, CfProperties<unknown>>, _env: Env) => Promise<Response>
