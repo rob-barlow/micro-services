@@ -11,4 +11,4 @@ export default postTaskHandler;
 
 const hardcodedHtml = "<p class=\"task\">I am a hardcoded task</p>";
 
-const currentTasks = [];
+const currentTasks: string[] = [];

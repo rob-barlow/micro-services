@@ -1,5 +1,5 @@
-import getHealthHandler from "./health";
-import postTaskHandler from "./task";
+import getHealthHandler from "./endpoints/getHealth";
+import postTaskHandler from "./endpoints/postTask";
 
 async function handleApiRequest(request: Request, _env: Env): Promise<Response> {
     const handler = routes[new URL(request.url).pathname];

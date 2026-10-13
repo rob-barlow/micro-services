@@ -1,4 +1,4 @@
-import handleApiRequest from "./api/api";
+import handleApiRequest from "./api";
 
 export default {
 	async fetch(request: Request, env: Env) {

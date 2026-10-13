@@ -1,7 +1,7 @@
 var __defProp = Object.defineProperty;
 var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
 
-// src/api/health.ts
+// src/api/endpoints/getHealth.ts
 var Health = {
   Healthy: "Healthy",
   Degraded: "Degraded",
@@ -13,9 +13,9 @@ async function getHealthHandler(_request, _env) {
   return response;
 }
 __name(getHealthHandler, "getHealthHandler");
-var health_default = getHealthHandler;
+var getHealth_default = getHealthHandler;
 
-// src/api/task.ts
+// src/api/endpoints/postTask.ts
 async function postTaskHandler(_request, _env) {
   currentTasks.push(hardcodedHtml);
   const init = { status: 200 };
@@ -23,11 +23,11 @@ async function postTaskHandler(_request, _env) {
   return response;
 }
 __name(postTaskHandler, "postTaskHandler");
-var task_default = postTaskHandler;
+var postTask_default = postTaskHandler;
 var hardcodedHtml = '<p class="task">I am a hardcoded task</p>';
 var currentTasks = [];
 
-// src/api/api.ts
+// src/api/index.ts
 async function handleApiRequest(request, _env) {
   const handler = routes[new URL(request.url).pathname];
   if (!handler) {
@@ -38,8 +38,8 @@ async function handleApiRequest(request, _env) {
 __name(handleApiRequest, "handleApiRequest");
 var api_default = handleApiRequest;
 var routes = {
-  "/api/health": health_default,
-  "/api/task": task_default
+  "/api/health": getHealth_default,
+  "/api/task": postTask_default
 };
 
 // src/index.ts
