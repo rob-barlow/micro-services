@@ -1,19 +1,38 @@
 var __defProp = Object.defineProperty;
 var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
 
-// src/api.ts
-async function handleApiRequest(_request, _env) {
-  return new Response();
+// src/api/health.ts
+var Health = {
+  Healthy: "Healthy",
+  Degraded: "Degraded",
+  Unhealthy: "Unhealthy"
+};
+async function handleHealthRequest(_request, _env) {
+  const init = { status: 200 };
+  const response = new Response(Health.Healthy, init);
+  return response;
+}
+__name(handleHealthRequest, "handleHealthRequest");
+var health_default = handleHealthRequest;
+
+// src/api/api.ts
+async function handleApiRequest(request, _env) {
+  const handler = routes[new URL(request.url).pathname];
+  if (!handler) {
+    return new Response("Not Found", { status: 404 });
+  }
+  return handler(request, _env);
 }
 __name(handleApiRequest, "handleApiRequest");
 var api_default = handleApiRequest;
+var routes = {
+  "/api/health": health_default
+};
 
 // src/index.ts
 var src_default = {
   async fetch(request, env) {
-    console.log(JSON.stringify(request));
-    console.log(JSON.stringify(request.url));
-    if (request.url.startsWith("/api")) {
+    if (request.url.includes("/api")) {
       return api_default(request, env);
     }
     return env.ASSETS.fetch(request);
@@ -67,7 +86,7 @@ var jsonError = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx)
 }, "jsonError");
 var middleware_miniflare3_json_error_default = jsonError;
 
-// .wrangler/tmp/bundle-SnsXkV/middleware-insertion-facade.js
+// .wrangler/tmp/bundle-Dk5yVb/middleware-insertion-facade.js
 var __INTERNAL_WRANGLER_MIDDLEWARE__ = [
   middleware_ensure_req_body_drained_default,
   middleware_miniflare3_json_error_default
@@ -99,7 +118,7 @@ function __facade_invoke__(request, env, ctx, dispatch, finalMiddleware) {
 }
 __name(__facade_invoke__, "__facade_invoke__");
 
-// .wrangler/tmp/bundle-SnsXkV/middleware-loader.entry.ts
+// .wrangler/tmp/bundle-Dk5yVb/middleware-loader.entry.ts
 var __Facade_ScheduledController__ = class ___Facade_ScheduledController__ {
   constructor(scheduledTime, cron, noRetry) {
     this.scheduledTime = scheduledTime;

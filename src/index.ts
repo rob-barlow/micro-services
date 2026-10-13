@@ -1,11 +1,8 @@
-import handleApiRequest from "./api";
+import handleApiRequest from "./api/api";
 
 export default {
 	async fetch(request: Request, env: Env) {
-		console.log(JSON.stringify(request))
-		console.log(JSON.stringify(request.url))
-
-		if (request.url.startsWith("/api")) {
+		if (request.url.includes("/api")) {
 			return handleApiRequest(request, env);
 		}
 
