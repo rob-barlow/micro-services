@@ -1,5 +1,5 @@
 {
-	"name": "micro-services",
+	"name": "to-do-list",
 	"main": "./src/index.ts",
 	"compatibility_date": "2026-10-12",
 	"observability": {
