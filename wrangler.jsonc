@@ -5,12 +5,19 @@
 	"observability": {
 		"enabled": true
 	},
-	// "build": {
-	// 	"command": "npm run build",
-	// 	"watch_dir": "src"
-	// },
+	"build": {
+		"command": "npm run build",
+		"watch_dir": "src"
+	},
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS"
-  }
+  },
+  "d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "to-do-list",
+			"database_id": "67e52025-65ed-4d67-be25-dee71b814e9a"
+		}
+	]
 }

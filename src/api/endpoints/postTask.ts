@@ -1,14 +1,15 @@
-async function postTaskHandler(_request: Request, _env: Env): Promise<Response> {
-    currentTasks.push(hardcodedHtml);
+import getTaskListHandler from "./getTaskList";
+
+async function postTaskHandler(request: Request, env: Env): Promise<Response> {
+    const data: FormData = await request.formData();
+    const taskBody = data.get("Body")
+
+    await env.DB
+        .prepare("INSERT INTO Tasks (Body) VALUES (?);")
+        .bind(taskBody)
+        .run();
     
-    const init: ResponseInit = {status: 200};
-    
-    const response = new Response(currentTasks.join(""), init);
-    return response;
+    return getTaskListHandler(request, env);
 }
 
 export default postTaskHandler;
-
-const hardcodedHtml = "<p class=\"task\">I am a hardcoded task</p>";
-
-const currentTasks: string[] = [];

@@ -16,18 +16,20 @@
     <p class="description">
       This frontend is returned from my to-do-list worker
     </p>
-    <button hx-get="/api/health" hx-target="#to-do-list">
+    <button hx-get="/api/tasks" hx-target="#to-do-list">
       Click Me
     </button>
+
+    <form>
+      <input type="text" name="Body" />
+      <button hx-post="/api/task" hx-target="#to-do-list">Submit</button>
+    </form>
     
     <button hx-post="/api/task" hx-target="#to-do-list">
       Create a new task
     </button>
 
     <div id="to-do-list"></div>
-    <!-- <form>
-
-    </form> -->
     <script type="module" src="/src/index.ts"></script>
   </body>
 </html>
