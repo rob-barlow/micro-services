@@ -1,4 +1,4 @@
-async function handleApiRequest(request: Request, env: Env): Promise<Response> {
+async function handleApiRequest(_request: Request, _env: Env): Promise<Response> {
     return new Response();
 }
 
