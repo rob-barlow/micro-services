@@ -1,9 +1,20 @@
 var __defProp = Object.defineProperty;
 var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
 
+// src/api.ts
+async function handleApiRequest(request, env) {
+  return new Response();
+}
+__name(handleApiRequest, "handleApiRequest");
+var api_default = handleApiRequest;
+
 // src/index.ts
 var src_default = {
   async fetch(request, env) {
+    console.log("Is this logged?");
+    if (request.url.startsWith("/api")) {
+      return api_default(request, env);
+    }
     return env.ASSETS.fetch(request);
   }
 };
