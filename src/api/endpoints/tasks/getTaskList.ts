@@ -1,7 +1,7 @@
-import type { ToDoTask } from "../types";
+import ToDoTask from "../../types/toDoTask";
 
 async function getTaskListHandler(_request: Request, env: Env): Promise<Response> {
-    const { results }: D1Result<Record<string, ToDoTask>> = await env.DB
+    const { results }: D1Result<ToDoTask> = await env.DB
         .prepare("SELECT * FROM Tasks")
         .run();
 
@@ -12,11 +12,11 @@ async function getTaskListHandler(_request: Request, env: Env): Promise<Response
 export default getTaskListHandler;
 
 
-function resultsToHtmlList(results: Record<string, ToDoTask>[]): string {
+function resultsToHtmlList(results: ToDoTask[]): string {
     let returnHtml = "";
 
-    results.forEach(toDoTask => {
-        returnHtml += "<p>" + toDoTask.Body + "</p>";
+    results.forEach(task => {
+        returnHtml += ToDoTask.toHtmlString(task);
     })
 
     return returnHtml
