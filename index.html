@@ -18,9 +18,9 @@
       This frontend is returned from my to-do-list worker
     </p>
 
-    <form>
-      <input type="text" name="Body" placeholder="Enter your task" />
-      <button hx-post="/api/tasks" hx-target="#to-do-list-list" hx-swap="beforeend">Submit</button>
+    <form id="task-form">
+      <input type="text" name="Body" placeholder="Enter your task" id="task-input" />
+      <button hx-post="/api/tasks" hx-target="#to-do-list-list" hx-swap="beforeend" id="task-submit-button">Submit</button>
     </form>
 
     <div id="to-do-list-container">
@@ -29,5 +29,6 @@
     </div>
 
     <script type="module" src="/src/index.ts"></script>
+    <script type="module" src="/src/frontend/index.ts"></script>
   </body>
 </html>

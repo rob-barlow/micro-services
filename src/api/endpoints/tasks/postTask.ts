@@ -13,8 +13,6 @@ async function postTaskHandler(request: Request, env: Env): Promise<Response> {
         .bind(taskBody)
         .run();
 
-        console.log(JSON.stringify(result))
-
     if (result.error){
         console.log(result.error);
         return new Response("<p>Shiz went wrong</p>", {status: 500})
